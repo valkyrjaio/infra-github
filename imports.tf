@@ -7,15 +7,23 @@
 #
 
 # One-time import wiring for repositories that predate this configuration.
-# Each repository's pull request adds its entry here together with its entry in
-# repos.auto.tfvars. Delete this file once every repository is imported.
+# A repository's file under repos/ carries its live ids in an `imports:` key —
+# `imports.rulesets` maps the module's resource names to ruleset ids, and
+# `imports.extra_rulesets` maps extra ruleset names to ids. Delete this file,
+# and the `imports:` keys, once every repository is imported.
 
 locals {
   # Live ruleset ids per repo, keyed by the module's resource names.
-  ruleset_ids = {}
+  ruleset_ids = {
+    for name, repo in local.repos : name => repo.imports.rulesets
+    if can(repo.imports.rulesets)
+  }
 
   # Repo-specific extra rulesets: repo => ruleset name => live id.
-  extra_ruleset_ids = {}
+  extra_ruleset_ids = {
+    for name, repo in local.repos : name => repo.imports.extra_rulesets
+    if can(repo.imports.extra_rulesets)
+  }
 
   extra_ruleset_imports = merge([
     for repo, rulesets in local.extra_ruleset_ids : {

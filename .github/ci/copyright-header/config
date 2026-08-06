@@ -17,6 +17,7 @@ EXCLUDED=(
     # A document, a workflow, and a configuration file hold no program code.
     '*.md'
     '*.yml'
+    '*.yaml'
     '*.gitattributes'
     '*.gitignore'
     # The apply workflow writes the state file, and OpenTofu writes the lock

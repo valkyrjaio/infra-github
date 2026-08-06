@@ -1,0 +1,4 @@
+description: Declarative GitHub organization configuration
+extra_check_rulesets:
+  Required Infra PR Checks:
+    - Config Plan

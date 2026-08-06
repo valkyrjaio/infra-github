@@ -18,15 +18,3 @@ variable "require_team_approval" {
   default     = false
 }
 
-variable "repos" {
-  description = "Repositories to manage, keyed by repository name."
-  type = map(object({
-    description          = optional(string, "")
-    homepage             = optional(string, "")
-    topics               = optional(list(string), [])
-    language             = optional(string)
-    template_repo        = optional(string)
-    is_template          = optional(bool, false)
-    extra_check_rulesets = optional(map(list(string)), {})
-  }))
-}
