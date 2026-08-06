@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [ 'master', '*.x' ]
+  pull_request:
+    # `edited` is deliberately absent. It fires for a title or description edit, and this workflow
+    # checks file content, which an edit cannot change. Running it on an edit would cost the full
+    # tool suite for a typo. Guarding the jobs on `github.event.changes` instead does not work and
+    # is not safe: a caller job skipped by `if:` never produces the `<job> / <job>` context the
+    # required status checks wait for, so the pull request blocks; and a guard inside the job would
+    # report success without running the tools, so an edit on a red pull request would turn it
+    # green. Pull request metadata is checked by `pr.yml`, which does subscribe to `edited`.
+    types: [ opened, synchronize, reopened ]
+    branches: [ 'master', '*.x' ]
+
+permissions:
+  pull-requests: write
+  contents: read
+
+jobs:
+  trailing-newline-check:
+    name: Trailing Newline Check
+    if: github.event_name == 'pull_request'
+    uses: valkyrjaio/.github/.github/workflows/_trailing-newline-check.yml@6241ffe0c94f3e445c8c9ca9e631f7809da7ef3a
+    permissions:
+      pull-requests: write
+      contents: read
+    secrets:
+      VALKYRJA_GHA_APP_ID: ${{ secrets.VALKYRJA_GHA_APP_ID }}
+      VALKYRJA_GHA_PRIVATE_KEY: ${{ secrets.VALKYRJA_GHA_PRIVATE_KEY }}
+
+  markdown-check:
+    name: Markdown Check
+    if: github.event_name == 'pull_request'
+    uses: valkyrjaio/.github/.github/workflows/_markdown-check.yml@6241ffe0c94f3e445c8c9ca9e631f7809da7ef3a
+    permissions:
+      pull-requests: write
+      contents: read
+    secrets:
+      VALKYRJA_GHA_APP_ID: ${{ secrets.VALKYRJA_GHA_APP_ID }}
+      VALKYRJA_GHA_PRIVATE_KEY: ${{ secrets.VALKYRJA_GHA_PRIVATE_KEY }}
