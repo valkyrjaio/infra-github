@@ -1,0 +1,15 @@
+name: Rebase from Master
+
+on:
+  workflow_dispatch:
+
+run-name: "Rebase ${{ github.ref_name }} from master"
+
+jobs:
+  rebase:
+    uses: valkyrjaio/.github/.github/workflows/_rebase-from-master.yml@6241ffe0c94f3e445c8c9ca9e631f7809da7ef3a
+    permissions:
+      contents: write
+    secrets:
+      VALKYRJA_GHA_APP_ID: ${{ secrets.VALKYRJA_GHA_APP_ID }}
+      VALKYRJA_GHA_PRIVATE_KEY: ${{ secrets.VALKYRJA_GHA_PRIVATE_KEY }}
