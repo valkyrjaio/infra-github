@@ -1,0 +1,49 @@
+# Draft — action pins move to release SHAs when this lands in the real repo.
+name: Plan
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: plan-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  plan:
+    name: Plan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Set up OpenTofu
+        uses: opentofu/setup-opentofu@v1
+        with:
+          tofu_version: '1.12.5'
+
+      - name: Initialize
+        run: tofu init -input=false
+
+      - name: Validate
+        run: tofu validate
+
+      - name: Check formatting
+        run: tofu fmt -check -recursive
+
+      - name: Plan
+        shell: bash
+        env:
+          GITHUB_APP_ID: ${{ secrets.VALKYRJA_GHA_APP_ID }}
+          GITHUB_APP_INSTALLATION_ID: ${{ secrets.VALKYRJA_GHA_INSTALLATION_ID }}
+          GITHUB_APP_PEM_FILE: ${{ secrets.VALKYRJA_GHA_PRIVATE_KEY }}
+        run: |
+          tofu plan -input=false -no-color 2>&1 | tee plan.txt
+          {
+            echo '## OpenTofu plan'
+            echo '```'
+            tail -n 200 plan.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"

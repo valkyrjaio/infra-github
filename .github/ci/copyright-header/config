@@ -1,0 +1,26 @@
+#
+# This file is part of the Valkyrja GitHub Infra package.
+#
+# Copyright (c) 2016-present Melech Mizrachi
+#
+# Released under the MIT License. See LICENSE.md for details.
+#
+
+# The package this repository is. COPYRIGHT_HEADER.md in the .github repository
+# maps every repository to its own identifier.
+IDENTIFIER='Valkyrja GitHub Infra'
+
+# The files that carry no copyright header. Every other tracked file must carry
+# it, so a new file fails the check until a person adds the header or adds the
+# file here.
+EXCLUDED=(
+    # A document, a workflow, and a configuration file hold no program code.
+    '*.md'
+    '*.yml'
+    '*.gitattributes'
+    '*.gitignore'
+    # The apply workflow writes the state file, and OpenTofu writes the lock
+    # file. A generated file carries no header.
+    'state/*'
+    '.terraform.lock.hcl'
+)
