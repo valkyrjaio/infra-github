@@ -46,6 +46,12 @@ variable "template_repo" {
   default     = null
 }
 
+variable "require_team_approval" {
+  description = "Whether the Require Pull Request ruleset demands an approval from the approvers team."
+  type        = bool
+  default     = false
+}
+
 variable "approvers_team_slug" {
   description = "Slug of the team whose approval the Require Pull Request ruleset demands; the team also gets push access so its members' approvals count. Must be a static string (it drives count). Null disables the requirement."
   type        = string

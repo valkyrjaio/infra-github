@@ -30,14 +30,15 @@ module "repo" {
   source   = "./modules/repo"
   for_each = var.repos
 
-  name                 = each.key
-  description          = each.value.description
-  homepage             = each.value.homepage
-  topics               = each.value.topics
-  language             = each.value.language
-  template_repo        = each.value.template_repo
-  is_template          = each.value.is_template
-  extra_check_rulesets = each.value.extra_check_rulesets
-  approvers_team_slug  = local.approvers_team_slug
-  approvers_team_id    = tonumber(github_team.approvers.id)
+  name                  = each.key
+  description           = each.value.description
+  homepage              = each.value.homepage
+  topics                = each.value.topics
+  language              = each.value.language
+  template_repo         = each.value.template_repo
+  is_template           = each.value.is_template
+  extra_check_rulesets  = each.value.extra_check_rulesets
+  approvers_team_slug   = local.approvers_team_slug
+  approvers_team_id     = tonumber(github_team.approvers.id)
+  require_team_approval = var.require_team_approval
 }
