@@ -71,4 +71,9 @@ jobs:
           git config user.email 'valkyrja-volundr[bot]@users.noreply.github.com'
           git add state/
           git commit -m '[State] chore: Record the applied state'
+          # A merge can land on the branch while the apply runs, and the push is
+          # then rejected as non-fast-forward. The rebase replays the state
+          # commit on the new tip; only this workflow writes state/, so the
+          # rebase cannot conflict.
+          git pull --rebase
           git push
