@@ -109,7 +109,7 @@ resource "github_repository_ruleset" "require_pull_request" {
 
   rules {
     pull_request {
-      required_approving_review_count   = 1
+      required_approving_review_count   = var.require_team_approval ? 1 : 0
       dismiss_stale_reviews_on_push     = false
       require_code_owner_review         = true
       require_last_push_approval        = false
@@ -117,7 +117,7 @@ resource "github_repository_ruleset" "require_pull_request" {
       allowed_merge_methods             = ["squash"]
 
       dynamic "required_reviewers" {
-        for_each = var.approvers_team_slug == null ? [] : [var.approvers_team_id]
+        for_each = var.require_team_approval && var.approvers_team_slug != null ? [var.approvers_team_id] : []
         content {
           file_patterns     = ["**"]
           minimum_approvals = 1

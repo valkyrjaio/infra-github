@@ -12,6 +12,12 @@ variable "owner" {
   default     = "valkyrjaio"
 }
 
+variable "require_team_approval" {
+  description = "Whether every pull request requires an approval from the approvers team. Off while the team has one member: GitHub never counts an author's own approval, so the requirement would block every pull request that member opens."
+  type        = bool
+  default     = false
+}
+
 variable "repos" {
   description = "Repositories to manage, keyed by repository name."
   type = map(object({
