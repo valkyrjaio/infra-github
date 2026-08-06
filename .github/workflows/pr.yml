@@ -1,0 +1,22 @@
+name: PR
+
+on:
+  pull_request:
+    # `edited` fires for a title or description edit, and for a base-branch change — which is how
+    # GitHub reports the auto-retarget a stacked pull request gets when its parent merges. Both are
+    # pull request metadata, and this workflow checks pull request metadata, so both belong here.
+    types: [ opened, synchronize, reopened, edited ]
+    branches: [ 'master', '*.x' ]
+
+permissions:
+  pull-requests: write
+  contents: read
+
+jobs:
+
+  commit-message-check:
+    name: Commit Message Check
+    uses: valkyrjaio/.github/.github/workflows/_commit-message-check.yml@6241ffe0c94f3e445c8c9ca9e631f7809da7ef3a
+    secrets:
+      VALKYRJA_GHA_APP_ID: ${{ secrets.VALKYRJA_GHA_APP_ID }}
+      VALKYRJA_GHA_PRIVATE_KEY: ${{ secrets.VALKYRJA_GHA_PRIVATE_KEY }}
