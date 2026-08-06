@@ -38,7 +38,8 @@ module looks the language up in `language_checks`.
 GITHUB_TOKEN=$(gh auth token) tofu plan
 ```
 
-Never `apply` before the bootstrap is explicitly approved.
+Never run `tofu apply` locally — the Apply workflow owns every apply, and a
+local apply races it for the state file.
 
 ## How to
 
@@ -148,12 +149,14 @@ Bump the `version_branch` variable default in `modules/repo/variables.tf`
 (e.g. `"26.x"` → `"27.x"`) when the new year's branches are cut — it is the
 source branch for `master` on newly created repos.
 
-## CI (draft workflows, not yet active)
+## CI
 
-- `plan.yml` — plan on every pull request, output in the job summary. Make
-  `Plan / Plan` a required check on this repo via its own
-  `extra_check_rulesets` entry. No `paths:` filter — a skipped required check
-  drops its context and blocks merges.
+- `plan.yml` — plan on every pull request, output in the job summary. The
+  `Config Plan` context is required on this repo through its own
+  `extra_check_rulesets` entry — the ruleset matches the job-name chain, so
+  the job name is the context and the workflow name is only a display prefix.
+  No `paths:` filter — a skipped required check drops its context and blocks
+  merges.
 - `apply.yml` — apply on every push to the default branch, weekly as the drift
   reverter, and on dispatch. Applies serialize through a concurrency group;
   each run pulls before applying so a queued apply starts from the state its
@@ -168,9 +171,6 @@ source branch for `master` on newly created repos.
   secret by choice, so every Völundr credential sits together in the secrets
   tab. Do not set `GITHUB_OWNER` — a documented provider bug lets it override
   the `owner` argument.
-- Action pins are version tags in the drafts; move to release SHAs per org
-  convention when this lands in the real repo, and set the `push:` branch to
-  the repo's actual default branch.
 
 ## Findings baked into the model
 
@@ -193,7 +193,7 @@ source branch for `master` on newly created repos.
 
 ## Deliberate scope decisions
 
-- Secret *values* are never managed here (they would land in plaintext in
+- Secret _values_ are never managed here (they would land in plaintext in
   state). Terraform manages the infrastructure around secrets, never their
   contents.
 - Not modeled, kept as script remnants: immutable releases (no provider

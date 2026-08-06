@@ -10,7 +10,7 @@ repos = {
   "infra-github" = {
     description = "Declarative GitHub organization configuration"
     extra_check_rulesets = {
-      "Required Infra PR Checks" = ["Plan / Plan"]
+      "Required Infra PR Checks" = ["Config Plan"]
     }
   }
 }
