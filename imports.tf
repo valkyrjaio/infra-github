@@ -7,10 +7,8 @@
 #
 
 # One-time import wiring for repositories that predate this configuration.
-# A repository's file under repos/ carries its live ids in an `imports:` key —
-# `imports.rulesets` maps the module's resource names to ruleset ids, and
-# `imports.extra_rulesets` maps extra ruleset names to ids. Delete this file,
-# and the `imports:` keys, once every repository is imported.
+# A repository's file under repos/ carries its live ids in an `imports:` key.
+# This file, and the `imports:` keys, retire once every repository is imported.
 
 locals {
   # Live ruleset ids per repo, keyed by the module's resource names.
@@ -39,9 +37,8 @@ locals {
   lang_repos = { for repo, ids in local.ruleset_ids : repo => ids if contains(keys(ids), "required_language_checks") }
 }
 
-# Keyed off ruleset_ids, not var.repos: ruleset_ids holds exactly the repos
-# that existed when this configuration was written, so a new repo added to
-# var.repos is created rather than imported.
+# Keyed off ruleset_ids, so a repository without an `imports:` key is created
+# rather than imported.
 import {
   for_each = local.ruleset_ids
   to       = module.repo[each.key].github_repository.this

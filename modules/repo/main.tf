@@ -44,10 +44,9 @@ resource "github_repository" "this" {
     content {
       owner      = "valkyrjaio"
       repository = template.value
-      # Default-branch copy only. A template's default branch is the current
-      # version branch, so a new repo starts with exactly that one branch;
-      # master is created from it below. include_all_branches would also drag
-      # in master-backup, old ??.x branches, and any stray work branches.
+      # The template's default branch is the current version branch, and master
+      # is created from it below. include_all_branches would also copy backup,
+      # old version, and stray work branches.
       include_all_branches = false
     }
   }
@@ -73,10 +72,9 @@ resource "github_team_repository" "approvers" {
   permission = "push"
 }
 
-# Only for repos this configuration creates from a template: the copy brings the
-# version branch alone, and every repo also needs master. The template copy is
-# asynchronous, so the first apply can fail here before the source branch
-# exists — re-apply (or re-run the workflow) once the copy lands.
+# The template copy brings the version branch alone, and every repo also needs
+# master. Warning: the copy is asynchronous, so the first apply can fail here
+# before the source branch exists — re-run the Apply workflow.
 resource "github_branch" "master" {
   count = var.template_repo == null ? 0 : 1
 
