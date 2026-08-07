@@ -1,0 +1,11 @@
+description: The Valkyrja Python framework build tool and application creator
+language: python
+imports:
+  rulesets:
+    force_push_protection: 20276728
+    protect_master: 20276729
+    protect_release_tags: 20276731
+    require_pull_request: 20276732
+    required_default_checks: 20276735
+    restrict_unsupported_branches: 20276737
+    required_language_checks: 20276738
