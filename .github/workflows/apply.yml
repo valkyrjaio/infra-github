@@ -13,8 +13,11 @@ permissions:
 
 # Applies serialize through this group, and each run pulls after acquiring its
 # slot, so a queued apply starts from the state its predecessor committed.
+# A bot push enters the group before the job guard skips it, and GitHub
+# replaces a pending run with a newer one — so a bot push in this group would
+# cancel a pending apply and then skip itself. Bot pushes get their own group.
 concurrency:
-  group: apply
+  group: ${{ github.event_name == 'push' && github.actor == 'valkyrja-volundr[bot]' && 'apply-bot-noop' || 'apply' }}
   cancel-in-progress: false
 
 jobs:
