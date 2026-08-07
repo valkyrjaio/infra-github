@@ -1,0 +1,4 @@
+ruleset_name: Required Go PR Checks
+contexts:
+  - Tools / golangci-lint / golangci-lint
+  - Tools / Test / Test
