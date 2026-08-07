@@ -1,0 +1,11 @@
+description: Shared golangci-lint configuration for Valkyrja Go repositories
+language: go
+imports:
+  rulesets:
+    force_push_protection: 20265244
+    protect_master: 20265245
+    protect_release_tags: 20265246
+    require_pull_request: 20265247
+    required_default_checks: 20265248
+    restrict_unsupported_branches: 20265250
+    required_language_checks: 20265251
