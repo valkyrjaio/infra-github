@@ -1,0 +1,11 @@
+description: Shared Rector configuration for Valkyrja PHP projects
+language: php
+imports:
+  rulesets:
+    force_push_protection: 15189134
+    protect_master: 15189136
+    protect_release_tags: 15200859
+    require_pull_request: 15189137
+    required_default_checks: 15273984
+    restrict_unsupported_branches: 15189138
+    required_language_checks: 15273985
