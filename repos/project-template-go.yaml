@@ -1,0 +1,12 @@
+description: Go Project Template
+language: go
+is_template: true
+imports:
+  rulesets:
+    force_push_protection: 16099705
+    protect_master: 16099706
+    protect_release_tags: 16099707
+    require_pull_request: 16099709
+    required_default_checks: 16099711
+    restrict_unsupported_branches: 16099712
+    required_language_checks: 19204428
