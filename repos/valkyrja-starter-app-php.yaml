@@ -1,0 +1,20 @@
+description: Starter application template for building on the Valkyrja PHP framework
+homepage: "https://valkyrja.io"
+language: php
+is_template: true
+extra_check_rulesets:
+  Required Starter App PR Checks:
+    - Sindri PHPUnit
+    - RoadRunner E2E
+    - FrankenPHP E2E
+imports:
+  rulesets:
+    force_push_protection: 14893349
+    protect_master: 14893341
+    protect_release_tags: 15200845
+    require_pull_request: 15195228
+    required_default_checks: 15273997
+    restrict_unsupported_branches: 15195229
+    required_language_checks: 15273998
+  extra_rulesets:
+    Required Starter App PR Checks: 19749233
