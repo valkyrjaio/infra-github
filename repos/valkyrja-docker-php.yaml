@@ -1,0 +1,9 @@
+description: A docker container to run The Valkyrja PHP Application
+imports:
+  rulesets:
+    force_push_protection: 15195256
+    protect_master: 15195257
+    protect_release_tags: 15200893
+    require_pull_request: 15195258
+    required_default_checks: 15273968
+    restrict_unsupported_branches: 15195259
