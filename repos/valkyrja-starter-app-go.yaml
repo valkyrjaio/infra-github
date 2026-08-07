@@ -1,0 +1,11 @@
+description: Starter application template for building on the Valkyrja Go framework
+language: go
+imports:
+  rulesets:
+    force_push_protection: 20276843
+    protect_master: 20276844
+    protect_release_tags: 20276846
+    require_pull_request: 20276847
+    required_default_checks: 20276849
+    restrict_unsupported_branches: 20276852
+    required_language_checks: 20276854
