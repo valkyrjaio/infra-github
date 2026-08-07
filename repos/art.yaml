@@ -1,0 +1,9 @@
+description: Various art for the Valkyrja Framework
+imports:
+  rulesets:
+    force_push_protection: 15195220
+    protect_master: 15195221
+    protect_release_tags: 15200876
+    require_pull_request: 15195223
+    required_default_checks: 15273974
+    restrict_unsupported_branches: 15195224
