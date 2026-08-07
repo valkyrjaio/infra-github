@@ -1,0 +1,11 @@
+description: Shared PHPUnit configuration for Valkyrja PHP projects
+language: php
+imports:
+  rulesets:
+    force_push_protection: 15189376
+    protect_master: 15189384
+    protect_release_tags: 15200855
+    require_pull_request: 15189392
+    required_default_checks: 15274007
+    restrict_unsupported_branches: 15189399
+    required_language_checks: 15274008
