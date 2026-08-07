@@ -162,9 +162,7 @@ source branch for `master` on newly created repos.
   Checks" ruleset that exists nowhere in `.github/rulesets/` (hand-applied; the
   sweep can't see it). Modeled via `extra_check_rulesets`. Go/Python starters
   get theirs once their Sindri tests exist.
-- Starter apps and project templates are template repositories (`is_template`),
-  EXCEPT `valkyrja-starter-app-go` — mirrored as-is; likely an oversight to fix
-  as its own PR.
+- Starter apps and project templates are template repositories (`is_template`).
 - Repos generated from a template permanently record the origin; the module
   ignores the `template` block via `lifecycle` or every such repo shows a
   phantom diff.
