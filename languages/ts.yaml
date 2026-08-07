@@ -1,0 +1,6 @@
+ruleset_name: Required TypeScript PR Checks
+contexts:
+  - Tools / ESLint / ESLint
+  - Tools / TypeScript / TypeScript
+  - Tools / Vitest / Vitest
+  - Tools / Prettier / Prettier
