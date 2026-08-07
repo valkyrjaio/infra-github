@@ -1,0 +1,9 @@
+description: Cross-language design decisions, implementation roadmaps, and port planning for the Valkyrja framework ecosystem
+imports:
+  rulesets:
+    force_push_protection: 15195232
+    protect_master: 15195233
+    protect_release_tags: 15200877
+    require_pull_request: 15195234
+    required_default_checks: 15273975
+    restrict_unsupported_branches: 15195235
