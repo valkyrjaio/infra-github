@@ -1,0 +1,11 @@
+description: Shared PHPStan configuration for Valkyrja PHP projects
+language: php
+imports:
+  rulesets:
+    force_push_protection: 15189204
+    protect_master: 15189205
+    protect_release_tags: 15200858
+    require_pull_request: 15189210
+    required_default_checks: 15273986
+    restrict_unsupported_branches: 15189211
+    required_language_checks: 15273987
