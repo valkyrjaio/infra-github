@@ -1,0 +1,9 @@
+description: Framework Benchmarking
+imports:
+  rulesets:
+    force_push_protection: 15195252
+    protect_master: 15195253
+    protect_release_tags: 15200891
+    require_pull_request: 15195254
+    required_default_checks: 15273967
+    restrict_unsupported_branches: 15195255
