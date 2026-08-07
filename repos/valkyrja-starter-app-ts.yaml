@@ -1,0 +1,17 @@
+description: Starter application template for building on the Valkyrja TypeScript framework
+language: ts
+is_template: true
+extra_check_rulesets:
+  Required Starter App PR Checks:
+    - Sindri Vitest
+imports:
+  rulesets:
+    force_push_protection: 16097061
+    protect_master: 16097063
+    protect_release_tags: 16097064
+    require_pull_request: 16097065
+    required_default_checks: 16097067
+    restrict_unsupported_branches: 16097068
+    required_language_checks: 16538872
+  extra_rulesets:
+    Required Starter App PR Checks: 19872612
