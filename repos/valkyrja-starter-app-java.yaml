@@ -1,0 +1,17 @@
+description: Starter application template for building on the Valkyrja Java framework
+language: java
+is_template: true
+extra_check_rulesets:
+  Required Starter App PR Checks:
+    - Sindri JUnit / JUnit
+imports:
+  rulesets:
+    force_push_protection: 15195240
+    protect_master: 15195242
+    protect_release_tags: 15200885
+    require_pull_request: 15195243
+    required_default_checks: 15274012
+    restrict_unsupported_branches: 15195244
+    required_language_checks: 16563761
+  extra_rulesets:
+    Required Starter App PR Checks: 19745930
