@@ -1,12 +1,3 @@
 description: Python Project Template
 language: python
 is_template: true
-imports:
-  rulesets:
-    force_push_protection: 16099733
-    protect_master: 16099734
-    protect_release_tags: 16099735
-    require_pull_request: 16099736
-    required_default_checks: 16099737
-    restrict_unsupported_branches: 16099738
-    required_language_checks: 19204426

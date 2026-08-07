@@ -1,12 +1,3 @@
 description: PHP Project Template
 language: php
 is_template: true
-imports:
-  rulesets:
-    force_push_protection: 15192411
-    protect_master: 15192413
-    protect_release_tags: 15200846
-    require_pull_request: 15192414
-    required_default_checks: 15273995
-    restrict_unsupported_branches: 15192416
-    required_language_checks: 15273996

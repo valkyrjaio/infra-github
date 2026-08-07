@@ -1,11 +1,2 @@
 description: Shared Spotless configuration for Valkyrja Java repositories
 language: java
-imports:
-  rulesets:
-    force_push_protection: 20264576
-    protect_master: 20264577
-    protect_release_tags: 20264578
-    require_pull_request: 20264579
-    required_default_checks: 20264580
-    restrict_unsupported_branches: 20264581
-    required_language_checks: 20264582

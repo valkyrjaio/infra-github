@@ -1,12 +1,3 @@
 description: Starter application template for building on the Valkyrja Python framework
 language: python
 is_template: true
-imports:
-  rulesets:
-    force_push_protection: 20276776
-    protect_master: 20276777
-    protect_release_tags: 20276779
-    require_pull_request: 20276780
-    required_default_checks: 20276781
-    restrict_unsupported_branches: 20276782
-    required_language_checks: 20276783

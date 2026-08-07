@@ -1,11 +1,2 @@
 description: Shared Ruff configuration for Valkyrja Python projects
 language: python
-imports:
-  rulesets:
-    force_push_protection: 20269364
-    protect_master: 20269366
-    protect_release_tags: 20269367
-    require_pull_request: 20269369
-    required_default_checks: 20269370
-    restrict_unsupported_branches: 20269371
-    required_language_checks: 20269372

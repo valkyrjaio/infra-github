@@ -1,11 +1,2 @@
 description: Shared ESLint configuration for Valkyrja TypeScript repositories
 language: ts
-imports:
-  rulesets:
-    force_push_protection: 20266766
-    protect_master: 20266767
-    protect_release_tags: 20266769
-    require_pull_request: 20266770
-    required_default_checks: 20266772
-    restrict_unsupported_branches: 20266775
-    required_language_checks: 20266777

@@ -1,11 +1,2 @@
 description: Shared PHPArkitect configuration for Valkyrja PHP projects
 language: php
-imports:
-  rulesets:
-    force_push_protection: 15191256
-    protect_master: 15191257
-    protect_release_tags: 15200850
-    require_pull_request: 15191261
-    required_default_checks: 15273977
-    restrict_unsupported_branches: 15191264
-    required_language_checks: 15273978

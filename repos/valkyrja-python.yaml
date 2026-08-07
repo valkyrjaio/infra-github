@@ -1,11 +1,2 @@
 description: Valkyrja is a fast, light, and robust Python framework for web and console applications
 language: python
-imports:
-  rulesets:
-    force_push_protection: 20275230
-    protect_master: 20275232
-    protect_release_tags: 20275234
-    require_pull_request: 20275236
-    required_default_checks: 20275238
-    restrict_unsupported_branches: 20275240
-    required_language_checks: 20275241
