@@ -1,0 +1,11 @@
+description: The Valkyrja Go framework build tool and application creator
+language: go
+imports:
+  rulesets:
+    force_push_protection: 20276845
+    protect_master: 20276848
+    protect_release_tags: 20276850
+    require_pull_request: 20276853
+    required_default_checks: 20276855
+    restrict_unsupported_branches: 20276856
+    required_language_checks: 20276857
