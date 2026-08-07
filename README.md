@@ -9,29 +9,18 @@ infrastructure per product, never a language suffix (an infra repo is
 language-agnostic by definition; language-specific tooling belongs in
 `ci-{tool}-{lang}`).
 
-## Rollout state
-
-Each language's check contexts and each existing repo's file (with its import
-ids) arrive as their own pull requests — a repo's plan shows its imports plus
-the `Require Pull Request` update, and the merge applies both. A repo pull
-request needs its language's pull request merged first, because the module
-looks the language up in the `languages/` files.
-
 ## Layout
 
 - `main.tf` — backend (local, `state/terraform.tfstate`), provider, module fan-out.
 - `variables.tf` — the shape of a repo entry.
 - `repos/<name>.yaml` — one file per repository; each declares its `language`
-  explicitly (replaces the substring/suffix detection heuristics), and a
-  not-yet-imported repository carries its live ids under an `imports:` key.
+  explicitly.
 - `languages/<lang>.yaml` — one file per language: the required-checks ruleset
   name and its contexts.
 - `teams.tf` — org teams and memberships.
 - `modules/repo/` — one repo's full desired state: settings, vulnerability
   alerts, the `claude-review` label, the six shared rulesets, the per-language
   required-checks ruleset, repo-specific extra rulesets, and the approvers grant.
-- `imports.tf` — one-time import wiring (live ruleset ids per repo). Delete after
-  the first real apply.
 - `.github/workflows/` — draft plan/apply workflows (see CI below).
 
 ## Running
@@ -49,8 +38,7 @@ local apply races it for the state file.
 
 Add `repos/<name>.yaml` with `template_repo` set, open a PR, read the plan,
 merge. The apply creates the repo from the template, then applies settings,
-rulesets, label, alerts, and the team grant in the same run. No `imports:` key
-is needed — imports are only for repos that predate this config.
+rulesets, label, alerts, and the team grant in the same run.
 
 ```yaml
 description: Shared toolname configuration for Valkyrja Lang projects

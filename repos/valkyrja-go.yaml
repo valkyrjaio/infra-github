@@ -1,11 +1,2 @@
 description: Valkyrja is a fast, light, and robust Go framework for multi-protocol applications — HTTP, CLI, and gRPC
 language: go
-imports:
-  rulesets:
-    force_push_protection: 20276829
-    protect_master: 20276830
-    protect_release_tags: 20276831
-    require_pull_request: 20276832
-    required_default_checks: 20276833
-    restrict_unsupported_branches: 20276834
-    required_language_checks: 20276835

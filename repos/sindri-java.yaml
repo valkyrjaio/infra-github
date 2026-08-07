@@ -1,11 +1,2 @@
 description: The Valkyrja Java framework build tool and application creator
 language: java
-imports:
-  rulesets:
-    force_push_protection: 16097440
-    protect_master: 16097441
-    protect_release_tags: 16097442
-    require_pull_request: 16097443
-    required_default_checks: 16097445
-    restrict_unsupported_branches: 16097446
-    required_language_checks: 16538902

@@ -8,12 +8,3 @@ topics:
   - mit
   - mit-license
 language: java
-imports:
-  rulesets:
-    force_push_protection: 15195246
-    protect_master: 15195247
-    protect_release_tags: 15200887
-    require_pull_request: 15195248
-    required_default_checks: 15274013
-    restrict_unsupported_branches: 15195250
-    required_language_checks: 16563736

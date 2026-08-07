@@ -1,9 +1,1 @@
 description: GitHub specific files and project wide workflows
-imports:
-  rulesets:
-    force_push_protection: 15225374
-    protect_master: 15225375
-    protect_release_tags: 15225376
-    require_pull_request: 15225377
-    required_default_checks: 15273964
-    restrict_unsupported_branches: 15225378
