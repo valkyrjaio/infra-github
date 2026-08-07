@@ -1,0 +1,11 @@
+description: Shared PHPCodeSniffer configuration for Valkyrja PHP projects
+language: php
+imports:
+  rulesets:
+    force_push_protection: 15191299
+    protect_master: 15191301
+    protect_release_tags: 15200848
+    require_pull_request: 15191305
+    required_default_checks: 15273979
+    restrict_unsupported_branches: 15191307
+    required_language_checks: 15273980
