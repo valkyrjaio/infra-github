@@ -1,0 +1,11 @@
+description: The Valkyrja PHP framework build tool and application creator
+language: php
+imports:
+  rulesets:
+    force_push_protection: 15191414
+    protect_master: 15191416
+    protect_release_tags: 15200871
+    require_pull_request: 15191419
+    required_default_checks: 15274000
+    restrict_unsupported_branches: 15191421
+    required_language_checks: 15274001
