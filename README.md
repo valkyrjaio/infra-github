@@ -11,19 +11,21 @@ language-agnostic by definition; language-specific tooling belongs in
 
 ## Rollout state
 
-The initial commit holds the structure and this repo's own entry. Each
-language's check contexts and each existing repo's entry (with its import
-wiring) arrive as their own pull requests — a repo's plan shows its imports
-plus the `Require Pull Request` update, and the merge applies both. A repo
-pull request needs its language's pull request merged first, because the
-module looks the language up in `language_checks`.
+Each language's check contexts and each existing repo's file (with its import
+ids) arrive as their own pull requests — a repo's plan shows its imports plus
+the `Require Pull Request` update, and the merge applies both. A repo pull
+request needs its language's pull request merged first, because the module
+looks the language up in the `languages/` files.
 
 ## Layout
 
 - `main.tf` — backend (local, `state/terraform.tfstate`), provider, module fan-out.
 - `variables.tf` — the shape of a repo entry.
-- `repos.auto.tfvars` — the per-repo map; each entry declares its `language`
-  explicitly (replaces the substring/suffix detection heuristics).
+- `repos/<name>.yaml` — one file per repository; each declares its `language`
+  explicitly (replaces the substring/suffix detection heuristics), and a
+  not-yet-imported repository carries its live ids under an `imports:` key.
+- `languages/<lang>.yaml` — one file per language: the required-checks ruleset
+  name and its contexts.
 - `teams.tf` — org teams and memberships.
 - `modules/repo/` — one repo's full desired state: settings, vulnerability
   alerts, the `claude-review` label, the six shared rulesets, the per-language
@@ -45,17 +47,15 @@ local apply races it for the state file.
 
 ### Add a new repo (creates it on apply)
 
-Add an entry to `repos.auto.tfvars` with `template_repo` set, open a PR, read
-the plan, merge. The apply creates the repo from the template, then applies
-settings, rulesets, label, alerts, and the team grant in the same run. No
-imports entry is needed — imports are only for repos that predate this config.
+Add `repos/<name>.yaml` with `template_repo` set, open a PR, read the plan,
+merge. The apply creates the repo from the template, then applies settings,
+rulesets, label, alerts, and the team grant in the same run. No `imports:` key
+is needed — imports are only for repos that predate this config.
 
-```hcl
-"ci-toolname-lang" = {
-  description   = "Shared toolname configuration for Valkyrja Lang projects"
-  language      = "lang"
-  template_repo = "project-template-lang"
-}
+```yaml
+description: Shared toolname configuration for Valkyrja Lang projects
+language: lang
+template_repo: project-template-lang
 ```
 
 The template copy brings only the template's default branch (the current ??.x,
@@ -72,7 +72,7 @@ API call.
 
 ### Change a repo's settings
 
-Edit the repo's entry in `repos.auto.tfvars` (description, homepage, topics,
+Edit the repo's file under `repos/` (description, homepage, topics,
 `is_template`). Org-wide settings (merge policy, features) are constants in
 `modules/repo/main.tf` — changing one there changes all 36 repos in one PR, and
 the plan shows every affected repo.
@@ -104,25 +104,21 @@ resource body.
 
 ### Add or change a ruleset
 
-Three kinds, three places, all in `modules/repo/rulesets.tf`:
+Three kinds, three places:
 
-- **Shared (all repos)** — add a `github_repository_ruleset` resource next to the
-  existing six. Every repo gets it on the next apply.
-- **Language required checks** — edit the language's `contexts` list in the
-  `language_checks` local. Adding a language means one new map entry
-  (`ruleset_name` + `contexts`) and `language = "…"` on its repos' tfvars
-  entries.
-- **Repo-specific** — add to the repo's `extra_check_rulesets` in
-  `repos.auto.tfvars`; the key is the ruleset name, the value the check
-  contexts:
+- **Shared (all repos)** — add a `github_repository_ruleset` resource next to
+  the existing six in `modules/repo/rulesets.tf`. Every repo gets it on the
+  next apply.
+- **Language required checks** — edit the `contexts` list in the language's
+  `languages/<lang>.yaml`. Adding a language means one new file
+  (`ruleset_name` + `contexts`) and `language: <lang>` in its repos' files.
+- **Repo-specific** — add `extra_check_rulesets` to the repo's file under
+  `repos/`; the key is the ruleset name, the value the check contexts:
 
-```hcl
-"valkyrja-starter-app-go" = {
-  # …
-  extra_check_rulesets = {
-    "Required Starter App PR Checks" = ["Sindri Go Test"]
-  }
-}
+```yaml
+extra_check_rulesets:
+  Required Starter App PR Checks:
+    - Sindri Go Test
 ```
 
 To retire a ruleset, delete it from config — the apply deletes it from every

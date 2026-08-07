@@ -13,9 +13,6 @@ locals {
   # GitHub Actions integration id, required alongside each status-check context.
   github_actions_integration_id = 15368
 
-  # One entry per language: { ruleset_name, contexts }. Each language's pull
-  # request adds its entry, and a repo may only declare a language that is here.
-  language_checks = {}
 
   default_check_contexts = [
     "Commit Message Check / Check Commit Message",
@@ -258,7 +255,7 @@ resource "github_repository_ruleset" "required_language_checks" {
   count = var.language == null ? 0 : 1
 
   repository  = github_repository.this.name
-  name        = local.language_checks[var.language].ruleset_name
+  name        = var.language_checks[var.language].ruleset_name
   target      = "branch"
   enforcement = "active"
 
@@ -275,7 +272,7 @@ resource "github_repository_ruleset" "required_language_checks" {
       do_not_enforce_on_create             = false
 
       dynamic "required_check" {
-        for_each = local.language_checks[var.language].contexts
+        for_each = var.language_checks[var.language].contexts
         content {
           context        = required_check.value
           integration_id = local.github_actions_integration_id

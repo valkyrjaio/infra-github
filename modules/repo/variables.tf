@@ -30,14 +30,18 @@ variable "topics" {
 }
 
 variable "language" {
-  description = "Primary language, selecting the language-specific required-checks ruleset. Null for repos with no language CI."
+  description = "Primary language, selecting the language-specific required-checks ruleset. Must name a key of language_checks. Null for repos with no language CI."
   type        = string
   default     = null
+}
 
-  validation {
-    condition     = var.language == null || contains(["php", "java", "python", "ts", "go"], coalesce(var.language, "php"))
-    error_message = "language must be one of php, java, python, ts, go (or null)."
-  }
+variable "language_checks" {
+  description = "Per-language required-checks rulesets, keyed by language: { ruleset_name, contexts }."
+  type = map(object({
+    ruleset_name = string
+    contexts     = list(string)
+  }))
+  default = {}
 }
 
 variable "template_repo" {

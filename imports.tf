@@ -7,15 +7,21 @@
 #
 
 # One-time import wiring for repositories that predate this configuration.
-# Each repository's pull request adds its entry here together with its entry in
-# repos.auto.tfvars. Delete this file once every repository is imported.
+# A repository's file under repos/ carries its live ids in an `imports:` key.
+# This file, and the `imports:` keys, retire once every repository is imported.
 
 locals {
   # Live ruleset ids per repo, keyed by the module's resource names.
-  ruleset_ids = {}
+  ruleset_ids = {
+    for name, repo in local.repos : name => repo.imports.rulesets
+    if can(repo.imports.rulesets)
+  }
 
   # Repo-specific extra rulesets: repo => ruleset name => live id.
-  extra_ruleset_ids = {}
+  extra_ruleset_ids = {
+    for name, repo in local.repos : name => repo.imports.extra_rulesets
+    if can(repo.imports.extra_rulesets)
+  }
 
   extra_ruleset_imports = merge([
     for repo, rulesets in local.extra_ruleset_ids : {
@@ -31,9 +37,8 @@ locals {
   lang_repos = { for repo, ids in local.ruleset_ids : repo => ids if contains(keys(ids), "required_language_checks") }
 }
 
-# Keyed off ruleset_ids, not var.repos: ruleset_ids holds exactly the repos
-# that existed when this configuration was written, so a new repo added to
-# var.repos is created rather than imported.
+# Keyed off ruleset_ids, so a repository without an `imports:` key is created
+# rather than imported.
 import {
   for_each = local.ruleset_ids
   to       = module.repo[each.key].github_repository.this

@@ -1,4 +1,3 @@
-# Draft — action pins move to release SHAs when this lands in the real repo.
 name: Plan
 
 on:
