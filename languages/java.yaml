@@ -1,0 +1,7 @@
+ruleset_name: Required Java PR Checks
+contexts:
+  - Tools / Spotless / Spotless
+  - Tools / ArchUnit / ArchUnit
+  - Tools / ErrorProne / ErrorProne
+  - Tools / SpotBugs / SpotBugs
+  - Tools / JUnit / JUnit
