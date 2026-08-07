@@ -1,0 +1,24 @@
+description: Valkyrja is a fast, light, and robust PHP framework for web and console applications
+homepage: "https://valkyrja.io"
+topics:
+  - cli
+  - framework
+  - http
+  - mit
+  - mit-license
+  - php
+  - php-framework
+  - php8
+  - php84
+  - php85
+  - valkyrja
+language: php
+imports:
+  rulesets:
+    force_push_protection: 11086774
+    protect_master: 11216738
+    protect_release_tags: 15200844
+    require_pull_request: 11090433
+    required_default_checks: 15274009
+    restrict_unsupported_branches: 11112960
+    required_language_checks: 15274010
