@@ -1,0 +1,19 @@
+description: Valkyrja is a fast, light, and robust TypeScript framework for web and console applications
+topics:
+  - cli
+  - framework
+  - http
+  - mit
+  - mit-license
+  - typescript
+  - typescript-framework
+language: ts
+imports:
+  rulesets:
+    force_push_protection: 16097038
+    protect_master: 16097039
+    protect_release_tags: 16097040
+    require_pull_request: 16097041
+    required_default_checks: 16097042
+    restrict_unsupported_branches: 16097043
+    required_language_checks: 16515388
