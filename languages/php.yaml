@@ -1,0 +1,11 @@
+ruleset_name: Required PHP PR Checks
+contexts:
+  - Tools / PHP CS Fixer / PHP 8.4
+  - Tools / PHP Code Sniffer / PHP 8.4
+  - Tools / PHPArkitect / PHP 8.4
+  - Tools / PHPStan / PHP 8.4
+  - Tools / PHPUnit / PHP 8.4
+  - Tools / Psalm / PHP 8.4
+  - Tools / Rector / PHP 8.4
+  - Tools / PHPUnit / PHP 8.5
+  - Tools / PHPUnit / PHP 8.6
