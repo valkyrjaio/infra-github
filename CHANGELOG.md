@@ -1,6 +1,10 @@
 # Release Notes for 26.x
 
-## [Unreleased](https://github.com/valkyrjaio/infra-github/compare/v26.0.0...26.x)
+## [Unreleased](https://github.com/valkyrjaio/infra-github/compare/v26.0.1...26.x)
+
+## [v26.0.1](https://github.com/valkyrjaio/infra-github/compare/v26.0.0...v26.0.1) - 2026-08-23
+
+* [Workflow] ci: Update .github workflow refs to v26.25.3 by [@valkyrja-volundr](https://github.com/valkyrja-volundr)[bot] in https://github.com/valkyrjaio/infra-github/pull/62
 
 ## [v26.0.0](https://github.com/valkyrjaio/infra-github/compare/26.0.0...v26.0.0) - 2026-08-21
 
