@@ -1,6 +1,8 @@
 # Release Notes for 26.x
 
-## [Unreleased](https://github.com/valkyrjaio/infra-github/compare/v26.0.17...26.x)
+## [Unreleased](https://github.com/valkyrjaio/infra-github/compare/v26.0.18...26.x)
+
+## [v26.0.18](https://github.com/valkyrjaio/infra-github/compare/v26.0.17...v26.0.18) - 2026-10-26
 
 ## [v26.0.17](https://github.com/valkyrjaio/infra-github/compare/v26.0.16...v26.0.17) - 2026-10-24
 
